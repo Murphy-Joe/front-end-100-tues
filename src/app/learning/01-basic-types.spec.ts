@@ -174,8 +174,60 @@ The End`;
       director: 'Lucas',
       yearReleased: 1977
     }
+  });
 
+  describe('array literals', () => {
 
+    it('syntax 1', () => {
+      const literals = ['Sean', 'Billy', 'Amy'];
 
+      let luckyNumbers: (number | string)[];
+      let luckNumbers: Array<number | string>
+
+      luckyNumbers = [1, 9, 20, 108, 'tacos'];
+      let e = luckyNumbers[1];
+
+      luckyNumbers[1] = 'birds';
+
+      if (luckyNumbers[5]) {
+        expect(true).toBeFalse() // blow up the test
+      }
+    });
+
+    it('typed arrays - tuples', () => {
+      let userInfo: [string, string, number, string[]];
+      userInfo = ['Warren', 'Ellis', 58, ['musician', 'artist', 'writer']];
+
+    });
+  });
+
+  describe('objest literals', () => {
+
+    it('object literals are anonymous objects', () => {
+      const joe = {
+        fName: 'Joe',
+        lName: 'Murphy',
+        age: 36,
+        roles: ['dad', 'dev']
+      }
+
+      expect(joe.age).toBe(36);
+    });
+  });
+
+  it('anonymous functions', () => {
+    const subtract = (a: number, b: number): number => a - b;
+
+    const divide = (a: number, b: number): number => {
+      if (b === 0) {
+        throw 'Are you crazy!';
+      } else {
+        return a / b;
+      }
+    };
+
+    expect(subtract(10, 2)).toBe(8);
+    expect(divide(10, 2)).toBe(5);
+    expect(() => divide(10, 0)).toThrow('Are you crazy!');
   });
 });
